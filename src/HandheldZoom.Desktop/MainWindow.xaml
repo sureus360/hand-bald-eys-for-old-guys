@@ -1,0 +1,68 @@
+<Window x:Class="HandheldZoom.Desktop.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="hand bald eys for old guys" Width="1100" Height="800" MinWidth="820" MinHeight="480" Background="#111B26" FontFamily="Segoe UI" WindowStartupLocation="CenterScreen">
+ <Grid Margin="26">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Grid Margin="0,0,0,22">
+   <StackPanel><TextBlock Text="hand bald eys for old guys" FontSize="29" FontWeight="Bold"/><TextBlock Text="Deine Spiele. Größer im Blick." Foreground="#9EB0C1" Margin="0,6,0,0"/></StackPanel>
+   <Button Content="In den Tray" HorizontalAlignment="Right" VerticalAlignment="Center" Click="HideToTray"/>
+  </Grid>
+  <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="285"/><ColumnDefinition Width="22"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+   <Border Background="{StaticResource Panel}" CornerRadius="14" Padding="18">
+    <DockPanel>
+     <Grid DockPanel.Dock="Top" Margin="0,0,0,12"><TextBlock Text="SPIELE &amp; PROFILE" FontSize="13" FontWeight="Bold" Foreground="#7BE0C3" VerticalAlignment="Center"/><Button Content="↻" ToolTip="Profildatei neu laden" HorizontalAlignment="Right" MinHeight="32" Width="32" Padding="4" Click="Reload"/></Grid>
+     <StackPanel DockPanel.Dock="Bottom" Margin="0,14,0,0">
+      <Button Content="+ Spiel hinzufügen" Click="AddGame"/>
+      <Button Content="Laufendes Spiel wählen" Click="AddRunning" Margin="0,9,0,0"/>
+     </StackPanel>
+     <ListBox x:Name="GameList" DisplayMemberPath="Name" Background="Transparent" Foreground="White" BorderThickness="0" SelectionChanged="SelectProfile"/>
+    </DockPanel>
+   </Border>
+   <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+    <StackPanel>
+     <Border Background="{StaticResource Panel}" CornerRadius="14" Padding="22">
+      <StackPanel>
+       <Grid><TextBlock x:Name="EditorTitle" Text="Profil einstellen" FontSize="24" FontWeight="SemiBold"/><Button x:Name="RemoveButton" Content="Entfernen" HorizontalAlignment="Right" Click="RemoveGame" Padding="12,8"/></Grid>
+       <TextBlock Text="Spielname" Foreground="#9EB0C1" Margin="0,18,0,6"/><TextBox x:Name="NameBox" TextChanged="Edited"/>
+       <TextBlock Text="Spielprozess · EXE-Name" Foreground="#9EB0C1" Margin="0,14,0,6"/>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBox x:Name="ProcessBox" TextChanged="Edited" ToolTip="Mehrere EXE-Namen mit Semikolon trennen."/><Button x:Name="BrowseButton" Content="EXE wählen" Grid.Column="1" Margin="10,0,0,0" Click="BrowseExe"/></Grid>
+       <Grid Margin="0,20,0,0"><TextBlock Text="Vergrößerung" Foreground="#9EB0C1"/><TextBlock x:Name="FactorLabel" Text="150 %" HorizontalAlignment="Right" FontSize="23" FontWeight="Bold" Foreground="#7BE0C3"/></Grid>
+       <Slider x:Name="FactorSlider" Minimum="110" Maximum="500" Value="150" ValueChanged="SliderEdited"/>
+       <TextBlock Text="Fokus auf dem Bildschirm" Foreground="#9EB0C1" Margin="0,12,0,8"/>
+       <UniformGrid Columns="3"><Button Content="Links oben" Tag="0,0" Click="SetFocus" Margin="0,0,6,0"/><Button Content="Mitte" Tag="50,50" Click="SetFocus" Margin="3,0"/><Button Content="Rechts unten" Tag="100,100" Click="SetFocus" Margin="6,0,0,0"/></UniformGrid>
+       <Grid Margin="0,12,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="20"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <StackPanel><TextBlock x:Name="FocusXLabel" Text="Horizontal · 50 %" FontSize="14"/><Slider x:Name="FocusXSlider" Minimum="0" Maximum="100" Value="50" ValueChanged="SliderEdited"/></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock x:Name="FocusYLabel" Text="Vertikal · 50 %" FontSize="14"/><Slider x:Name="FocusYSlider" Minimum="0" Maximum="100" Value="50" ValueChanged="SliderEdited"/></StackPanel>
+       </Grid>
+       <Grid Margin="0,12,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+        <ComboBox x:Name="ModeBox" SelectedIndex="0" SelectionChanged="ModeEdited"><ComboBoxItem Content="Halten · loslassen beendet Zoom"/><ComboBoxItem Content="Toggle · erneut drücken beendet Zoom"/></ComboBox>
+        <Button Content="Profil speichern" Grid.Column="1" Click="SaveProfile" Background="#357D6A" Margin="12,0,0,0"/>
+       </Grid>
+      </StackPanel>
+     </Border>
+     <Border Background="{StaticResource Panel}" CornerRadius="14" Padding="22" Margin="0,18,0,0">
+      <StackPanel>
+       <TextBlock Text="Steuerung" FontSize="22" FontWeight="SemiBold"/>
+       <CheckBox x:Name="AutomaticBox" Content="Spielprofil automatisch erkennen" IsChecked="True" Checked="LaunchOptionEdited" Unchecked="LaunchOptionEdited"/>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <StackPanel><TextBlock Text="Zoom-Tastenkombination" Foreground="#9EB0C1" FontSize="14" Margin="0,0,0,6"/><TextBox x:Name="HotkeyBox" Text="Ctrl+Alt+Z" TextChanged="LaunchOptionEdited"/></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock Text="Notfall-Reset" Foreground="#9EB0C1" FontSize="14" Margin="0,0,0,6"/><TextBox x:Name="ResetBox" Text="Ctrl+Alt+R" TextChanged="LaunchOptionEdited"/></StackPanel>
+       </Grid>
+       <Grid Margin="0,14,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <StackPanel><TextBlock Text="Controller-Platz" Foreground="#9EB0C1" FontSize="14" Margin="0,0,0,6"/><ComboBox x:Name="ControllerBox" SelectedIndex="0" SelectionChanged="LaunchOptionEdited"><ComboBoxItem Content="Controller 0"/><ComboBoxItem Content="Controller 1"/><ComboBoxItem Content="Controller 2"/><ComboBoxItem Content="Controller 3"/><ComboBoxItem Content="Nur Tastatur"/></ComboBox></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock Text="Zoom-Tasten · dieses Spielprofil" Foreground="#9EB0C1" FontSize="14" Margin="0,0,0,6"/><TextBox x:Name="ButtonsBox" Text="LB+RB" TextChanged="Edited"/><Button Content="Tasten auswählen" Click="ChooseButtons" Margin="0,8,0,0"/></StackPanel>
+       </Grid>
+       <CheckBox x:Name="StickBox" Content="Stick-Steuerung bei aktivem Zoom" IsChecked="True" Checked="ControlEdited" Unchecked="ControlEdited"/><TextBlock Text="Rechter Stick: Bildausschnitt bewegen. Linker Stick: oben hinein, unten heraus (100–500 %). Tasten und Sticks erreichen weiterhin auch das Spiel." Foreground="#9EB0C1" FontSize="14" Margin="0,14,0,0" TextWrapping="Wrap"/>
+      </StackPanel>
+     </Border>
+    </StackPanel>
+   </ScrollViewer>
+  </Grid>
+  <Border Grid.Row="2" Background="#1D3340" CornerRadius="12" Padding="18" Margin="0,20,0,0">
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel VerticalAlignment="Center"><TextBlock x:Name="StatusText" Text="Bereit · Zoom ist gestoppt" FontWeight="SemiBold" TextWrapping="Wrap"/><TextBlock x:Name="DetailText" Text="Profil speichern und Zoom starten." Foreground="#9EB0C1" FontSize="14" TextWrapping="Wrap" Margin="0,5,16,0"/></StackPanel>
+    <Button x:Name="StartButton" Grid.Column="1" Content="Zoom starten" Click="ToggleEngine" Background="#357D6A" Margin="0,0,10,0"/>
+    <Button Grid.Column="2" Content="100 % Reset" Click="ResetZoom" Background="#5C3C3F"/>
+   </Grid>
+  </Border>
+ </Grid>
+</Window>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>HandheldZoom.Core.Tests</AssemblyName>
+    <RootNamespace>HandheldZoom.Core.Tests</RootNamespace>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\HandheldZoom.Core\HandheldZoom.Core.csproj" />
+  </ItemGroup>
+</Project>

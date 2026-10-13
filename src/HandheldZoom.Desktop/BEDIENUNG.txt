@@ -1,0 +1,22 @@
+hand bald eys for old guys
+
+Start: "hand bald eys for old guys.exe" doppelklicken.
+
+1. Eine alte QuickZoom-Konsole zuerst beenden.
+2. Spiel links wählen oder "+ Spiel hinzufügen" / "Laufendes Spiel wählen".
+3. Faktor, Fokus und Halten/Toggle einstellen, "Profil speichern".
+4. Automatische Erkennung verwenden oder ausschalten für das gewählte Profil.
+5. Unter Steuerung "Tasten auswählen": einzelne Taste oder Kombination pro Spiel. Profil speichern.
+6. "Zoom starten". Im Spiel die gewählten Tasten (Standard LB+RB) oder Ctrl+Alt+Z verwenden.
+7. Bei aktivem Zoom: rechter Stick verschiebt den Ausschnitt; linker Stick oben vergrößert, unten verkleinert (100 bis 500 %).
+   Stick-Steuerung kann pro Profil abgeschaltet werden. Jede Aktivierung beginnt mit dem gespeicherten Faktor/Fokus.
+
+Ctrl+Alt+R / "100 % Reset": zurück auf 100 %.
+"Zoom stoppen" oder Fenster schließen: Steuerung beenden und Zoom wiederherstellen.
+Minimieren / "In den Tray": App läuft weiter. Tray-Symbol doppelklicken zum Öffnen.
+
+Profile werden dauerhaft unter %LOCALAPPDATA%\HandheldZoom\profiles.json gespeichert.
+Vorherige Datei: profiles.json.bak. Zoom-Tasten und Stick-Steuerung werden pro Profil gespeichert. Tastatur-Hotkeys und Controller-Platz gelten für die Sitzung.
+
+Notfall: HandheldZoom.Recovery.exe neben der App starten.
+Controller-Eingaben erreichen weiterhin das Spiel.

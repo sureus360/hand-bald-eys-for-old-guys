@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>HandheldZoom.Core</AssemblyName>
+    <RootNamespace>HandheldZoom.Core</RootNamespace>
+  </PropertyGroup>
+</Project>

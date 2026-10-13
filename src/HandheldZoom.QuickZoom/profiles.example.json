@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "defaultProfile": {
+    "name": "Standard",
+    "processNames": [],
+    "factor": 1.5,
+    "focusX": 0.5,
+    "focusY": 0.5,
+    "mode": "Hold"
+  },
+  "profiles": [
+    {
+      "name": "Crimson Desert",
+      "processNames": ["CrimsonDesert.exe"],
+      "factor": 1.5,
+      "focusX": 0.5,
+      "focusY": 0.5,
+      "mode": "Hold"
+    }
+  ]
+}
